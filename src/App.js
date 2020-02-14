@@ -1,15 +1,12 @@
 import React from 'react';
+import TodoList from "./components/TodoComponents/TodoList.js"
+import TodoForm from "./components/TodoComponents/TodoForm.js"
 
 
 const justdoit = [
   {
     task: "Watch Netflix",
     id: 12,
-    completed: false
-  },
-  {
-    task: "Study Korean",
-    id: 34,
     completed: false
   },
 ];
@@ -32,28 +29,29 @@ class App extends React.Component {
       task: item,
       id: Date.now(),
       completed: false
-    }
-    this.setState({justdoit: [...this.state.justdoit, newItem]});
+    };
+    this.setState({ justdoit: [...this.state.justdoit, newItem]});
   };
 
   listToggle = itemId => {
-    console.log(itemId);
+    // console.log(itemId);
 
-    this.setState({justdoit: this.state.justdoit.map(list => {
-       console.log(list);
+    this.setState({ justdoit: this.state.justdoit.map(list => {
+      //  console.log(list);
        if (itemId === list.id) {
          return {
            ...list,
            completed: !list.completed
          };
        }
+       return list;
     })
-   })
-  }
+   });
+  };
 
   clearCompleted = e => {
     e.preventDefault();
-    this.state({
+    this.setState({
       justdoit: this.state.justdoit.filter(item => item.completed === false)
     })
   }
@@ -62,6 +60,12 @@ class App extends React.Component {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
+        <TodoForm addTodo={this.addTodo} clearCompleted={this.clearCompleted}/>
+        <TodoList
+        justdoit={this.state.justdoit}
+        listToggle={this.listToggle}
+        
+        />
       </div>
     );
   }

@@ -1,0 +1,5 @@
+.underline {
+    text-decoration: line-through;
+    user-select: none;
+    cursor: pointer;
+  }
