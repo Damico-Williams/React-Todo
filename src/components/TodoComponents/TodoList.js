@@ -10,7 +10,6 @@ const TodoList = props => {
             {props.justdoit.map(list => (
                 <Todo key={list.id} list={list} listToggle={props.listToggle}/>
             ))}
-            {/* <button onClick={props.clearCompleted}>Clear Completed</button> */}
         </div>
     )
 }
